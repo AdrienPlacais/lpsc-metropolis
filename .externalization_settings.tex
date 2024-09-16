@@ -1,0 +1,82 @@
+% Another beam animation externalization trick to avoid every figure from being typeset
+% (equivalent of external/optimize=true, which cannot be used with tikz+animations)
+% https://tex.stackexchange.com/questions/119428/beamer-overlays-tikz-external-and-custom-file-name/694379#694379
+\usetikzlibrary{external}
+
+\makeatletter
+\newcommand*{\overlaynumber}{\number\beamer@slideinframe}
+\tikzset{
+   beamer externalizing/.style={%
+         execute at end picture={%
+               \tikzifexternalizing{%
+                  \ifbeamer@anotherslide
+                     \pgfexternalstorecommand{\string\global\string\beamer@anotherslidetrue}%
+                  \fi
+               }{}%
+            }%
+      },
+   every picture/.style={beamer externalizing}
+}
+
+% remove the `-\overlaynumber` suffix from the jobname
+% the name is stored in `\job@no@suffix` and the number in `\job@suffix@number`
+\def\strip@suffix#1{%
+   \begingroup%
+   \edef\@tempa{#1-}%
+   \expandafter\endgroup%
+   \expandafter\@strip@suffix\@tempa\relax%
+}
+\def\@strip@suffix#1-#2\relax{%
+   \ifx\relax#2\relax%
+      \edef\job@suffix@number{#1}%
+      \def\next{\relax}%
+   \else%
+      \expandafter\ifx\expandafter\relax\job@no@suffix\relax%
+         \def\job@no@suffix{#1}%
+      \else%
+         \edef\job@no@suffix{\job@no@suffix-#1}%
+      \fi%
+      \def\next{\@strip@suffix#2\relax}%
+   \fi%
+   \next%
+}
+% check if the next tikzpicture is the to-be-externalized one
+% or has the same basename and precedes it
+\def\if@is@current@pic#1{%
+   \begingroup%
+   \def\job@no@suffix{}%
+   \strip@suffix\pgfactualjobname%
+   \ifnum\job@suffix@number<\overlaynumber\relax%
+      \def\job@no@suffix{}%
+   \fi%
+   \edef\current@pic@basename{#1}%
+   \edef\current@pic@basename{%
+      \expandafter\detokenize\expandafter{\current@pic@basename}%
+   }%
+   \ifx\job@no@suffix\current@pic@basename%
+      \expandafter\endgroup\expandafter\@firstoftwo%
+   \else%
+      \expandafter\endgroup\expandafter\@secondoftwo%
+   \fi%
+}
+
+% add a `-\overlaynumber` suffix to the next tikzpicture name
+% and disable tikz external optimization where needed
+\let\orig@tikzsetnextfilename=\tikzsetnextfilename
+\renewcommand\tikzsetnextfilename[1]{%
+   \orig@tikzsetnextfilename{#1-\overlaynumber}%
+   \tikzifexternalizing{
+      \if@is@current@pic{\tikzexternal@filenameprefix#1}{%
+         \tikzset{external/optimize=false}%
+      }{%
+         \tikzset{external/optimize=true}%
+      }%
+   }{}%
+}
+\makeatother
+
+\tikzexternalize[%
+   only named=true,
+   % mode=list and make,
+]
+
