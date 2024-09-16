@@ -1,0 +1,152 @@
+\documentclass[10pt, svgnames]{beamer}
+
+\usetheme[%
+   sectionpage=progressbar,
+   numbering=fraction,
+]{metropolis}
+
+%----------------------------------------------------------------------------------------
+% Beamer commands
+%----------------------------------------------------------------------------------------
+\definecolor{LPSCdarkblue}{HTML}{003460}
+\definecolor{LPSCorange}{HTML}{bf8900}
+\definecolor{LPSCbg}{HTML}{ffffff}
+
+\setbeamerfont{normal text}{size=\footnotesize}
+\AtBeginDocument{\usebeamerfont{normal text}}
+\setbeamercolor{normal text}{fg=LPSCdarkblue, bg=LPSCbg}
+\setbeamercolor{alerted text}{fg=LPSCorange}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamerfont{bibliography item          }{size=\tiny}
+\setbeamerfont{bibliography entry author  }{size=\tiny}
+\setbeamerfont{bibliography entry title   }{size=\tiny}
+\setbeamerfont{bibliography entry location}{size=\tiny}
+\setbeamerfont{bibliography entry note    }{size=\tiny}
+\setbeamerfont{bibliography}{size=\tiny}
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+% Increase thickness of progress bar
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1.5pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{1.5pt}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+% Utility
+%----------------------------------------------------------------------------------------
+\usepackage{xspace}
+\usepackage[super]{nth}
+
+\usepackage{todonotes}
+\setuptodonotes{inline}
+
+\usepackage{siunitx}
+
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\usepackage{appendixnumberbeamer}
+
+%----------------------------------------------------------------------------------------
+% Presentation information
+%----------------------------------------------------------------------------------------
+\titlegraphic{%
+   \includegraphics[height=1cm]{images/logo/CNRS_2019_RVB.png}\hfill
+   \includegraphics[height=1cm]{images/logo/LPSC_Quadri.png}\hfill
+}
+
+\title{A nice presentation}
+\subtitle{Some conference}
+
+\author{%
+   \textbf{Adrien~Plaçais}\inst{\(*\)}
+   \and A.~Cab\inst{\(\dagger\)}
+   \and M.~P~Trois\inst{\( \ddagger \)}
+}
+
+\date{\today}
+
+\institute{%
+   \inst{ \( * \) } Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 38000 Grenoble, France
+   \and \inst{\( \dagger \)} Some lab
+   \and \inst{\( \ddagger \)} Another one
+}
+
+
+%----------------------------------------------------------------------------------------
+% Bib
+%----------------------------------------------------------------------------------------
+\usepackage[
+   citestyle=numeric-comp,
+   bibstyle=numeric,
+   sorting=none,
+   backend=biber,
+   hyperref=true,
+   backref=true,
+   citecounter=true,
+   citetracker=true,
+   ibidtracker=context,
+   doi=false,
+   url=false,
+   isbn=false,
+]{biblatex}
+
+% \setbeamerfont{footnote}{size=\fontsize{5}{5}\selectfont}
+
+% Shortcuts to cite ConferenceProc, JournalArt
+\DeclareCiteCommand{\citeconf}%
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}\usebibmacro{booktitle}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citejournal}%
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}\usebibmacro{journal}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\newcommand\blfootnote[1]{%
+   \begingroup
+   \renewcommand\thefootnote{\fnsymbol{footnote}}%
+   \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+   \footnotetext[0]{#1}%
+   \endgroup
+}
+
+\newcommand{\herecite}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}
+}
+\renewcommand{\footcite}[1]{%
+   \blfootnote{\herecite{#1}}
+}
+
+\newcommand{\heremorecite}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citejournal{#1}
+}
+\newcommand{\heremoreciteconf}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citeconf{#1}
+}
+
+\newcommand{\hereciteurl}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citeurl{#1}
+}
+\newcommand{\footciteurl}[1]{%
+   \blfootnote{\hereciteurl{#1}}
+}
+
+% Modify slide numbering and anchor foonotes to bottom of the page
+\setbeamertemplate{footline}{} % In original Metropolis theme, footnotes and slide numbers are written in footline
+\setbeamertemplate{navigation symbols}{% They are now in navigation symbols to have a cleaner vertical adjustment of footnotes
+   \ifnum\insertframenumber>0
+      \begin{beamercolorbox}[wd=\textwidth, sep=2ex]{footline}%
+         \usebeamerfont{page number in head/foot}% Select proper font
+         \usebeamertemplate*{frame footer} % No effect?
+         \hfill% No effect?
+         \usebeamertemplate*{frame numbering}% Insert frame number, with the template defined for 'frame numbering'
+      \end{beamercolorbox}%
+   \fi%
+}
