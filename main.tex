@@ -1,0 +1,54 @@
+%! TeX program = lualatex
+\input{preamble.tex}
+\input{preamble_tikz.tex}
+\tikzsetexternalprefix{figures/external/}
+
+% \addbibresource{main.bib}
+% You can use \footcite
+
+\begin{document}
+\maketitle
+
+\begin{frame}[noframenumbering]{Outline}
+   \tableofcontents
+\end{frame}
+
+\section{Section}
+\begin{frame}{Frame}
+   \begin{itemize}
+      \item A
+            \begin{itemize}
+               \item B
+               \item C
+            \end{itemize}
+      \item[\( \Rightarrow \)] D
+   \end{itemize}
+   \begin{table}[hbtp]
+      \centering
+      \begin{tabular}{@{} l c @{}}
+         \toprule
+         Cavity parameters     & Last section      \\
+         \midrule
+         Cavity type           & 5-cell elliptical \\
+         \( f\,[\si{\MHz}]\)   & \num{648}         \\
+         \# cav per cryomodule & \num{5}           \\
+         \# of cryomodules     & 8                 \\
+         \bottomrule
+      \end{tabular}
+   \end{table}
+\end{frame}
+
+
+% \section{References}\label{sec:References} % (fold)
+% \begin{frame}[allowframebreaks, noframenumbering]{References}
+%    \begingroup
+%    \printbibliography[heading=none]
+%    \endgroup
+% \end{frame}
+% section References (end)
+% appendixnumberbeamer fout la merde if \section after it
+
+% \appendix
+% \section{Appendix}
+\end{document}
+
