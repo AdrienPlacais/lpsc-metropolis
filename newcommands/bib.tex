@@ -1,0 +1,41 @@
+\DeclareCiteCommand{\citeconf}%
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}\usebibmacro{booktitle}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citejournal}%
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}\usebibmacro{journal}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\newcommand\blfootnote[1]{%
+   \begingroup
+   \renewcommand\thefootnote{\fnsymbol{footnote}}%
+   \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+   \footnotetext[0]{#1}%
+   \endgroup
+}
+
+\newcommand{\herecite}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}
+}
+\renewcommand{\footcite}[1]{%
+   \blfootnote{\herecite{#1}}
+}
+
+\newcommand{\heremorecite}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citejournal{#1}
+}
+\newcommand{\heremoreciteconf}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citeconf{#1}
+}
+
+\newcommand{\hereciteurl}[1]{%
+   \citeauthor*{#1} (\citeyear{#1}), \citetitle{#1}, \citeurl{#1}
+}
+\newcommand{\footciteurl}[1]{%
+   \blfootnote{\hereciteurl{#1}}
+}
+

@@ -1,0 +1,37 @@
+\definecolor{LPSCdarkblue}{HTML}{003460}
+\definecolor{LPSCorange}{HTML}{bf8900}
+\definecolor{LPSCbg}{HTML}{ffffff}
+
+\setbeamerfont{normal text}{size=\footnotesize}
+\AtBeginDocument{\usebeamerfont{normal text}}
+\setbeamercolor{normal text}{fg=LPSCdarkblue, bg=LPSCbg}
+\setbeamercolor{alerted text}{fg=LPSCorange}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamerfont{bibliography item          }{size=\tiny}
+\setbeamerfont{bibliography entry author  }{size=\tiny}
+\setbeamerfont{bibliography entry title   }{size=\tiny}
+\setbeamerfont{bibliography entry location}{size=\tiny}
+\setbeamerfont{bibliography entry note    }{size=\tiny}
+\setbeamerfont{bibliography}{size=\tiny}
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+% Increase thickness of progress bar
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1.5pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{1.5pt}
+\makeatother
+
+% Modify slide numbering and anchor foonotes to bottom of the page
+\setbeamertemplate{footline}{} % In original Metropolis theme, footnotes and slide numbers are written in footline
+\setbeamertemplate{navigation symbols}{% They are now in navigation symbols to have a cleaner vertical adjustment of footnotes
+   \ifnum\insertframenumber>0
+      \begin{beamercolorbox}[wd=\textwidth, sep=2ex]{footline}%
+         \usebeamerfont{page number in head/foot}% Select proper font
+         \usebeamertemplate*{frame footer} % No effect?
+         \hfill% No effect?
+         \usebeamertemplate*{frame numbering}% Insert frame number, with the template defined for 'frame numbering'
+      \end{beamercolorbox}%
+   \fi%
+}
