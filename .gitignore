@@ -13,6 +13,7 @@
 *.blg
 *.dvi
 *.fdb_latexmk
+*.figlist
 *.fls
 *.glg
 *.glo
@@ -25,6 +26,7 @@
 *.log
 *.lot
 *.maf
+*.makefile
 *.mtc
 *.mtc0
 *.nav
