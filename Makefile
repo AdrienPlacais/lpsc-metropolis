@@ -40,7 +40,8 @@ read:
 	evince $(filename_pdf) &
 
 clean:
-	rm -f ${filename}.{aux,auxlock,bcf,bbl,blg,dvi,fdb_latexmk,fls,log,mw,nav,out,pdf,ps,run.xml,snm,synctex.gz,toc}
+	rm -f ${filename}.{aux,auxlock,bbl,bbl-SAVE-ERROR,bcf,bcf-SAVE-ERROR,blg,dvi,fdb_latexmk,figlist,fls,makefile,mw,nav,out,pdf,ps,run.xml,snm,synctex.gz,toc}
+	rm -f *.log
 	rm -f figures/external/*
 
 edit:
