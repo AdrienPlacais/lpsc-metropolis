@@ -1,8 +1,8 @@
 \documentclass[10pt, svgnames]{beamer}
 
 \usetheme[%
-   sectionpage=progressbar,
-   numbering=fraction,
+	sectionpage=progressbar,
+	numbering=fraction,
 ]{metropolis}
 
 \input{styles/edit_metropolis_theme.tex}
@@ -14,10 +14,13 @@
 \usepackage{appendixnumberbeamer}
 \usepackage{booktabs}
 \usepackage{csquotes}
-\usepackage{siunitx}
 \usepackage{subcaption}
 \usepackage{tabularx}
 \usepackage{xspace}
+
+\usepackage{siunitx}
+% display units in Serif font
+\AtBeginDocument{\sisetup{unit-font-command = \mathrm}}
 
 \usepackage{todonotes}
 \setuptodonotes{inline}
@@ -25,25 +28,25 @@
 % Presentation information
 %----------------------------------------------------------------------------------------
 \titlegraphic{%
-   \includegraphics[height=1cm]{images/logo/CNRS_2019_RVB.png}\hfill
-   \includegraphics[height=1cm]{images/logo/LPSC_Quadri.png}\hfill
+	\includegraphics[height=1cm]{images/logo/CNRS_2019_RVB.png}\hfill
+	\includegraphics[height=1cm]{images/logo/LPSC_Quadri.png}\hfill
 }
 
 \title{A nice presentation}
 \subtitle{Some conference}
 
 \author{%
-   \textbf{Adrien~Plaçais}\inst{\(*\)}
-   \and A.~Cab\inst{\(\dagger\)}
-   \and M.~P~Trois\inst{\( \ddagger \)}
+	\textbf{Adrien~Plaçais}\inst{\(*\)}
+	\and A.~Cab\inst{\(\dagger\)}
+	\and M.~P~Trois\inst{\( \ddagger \)}
 }
 
 \date{\today}
 
 \institute{%
-   \inst{ \( * \) } Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 38000 Grenoble, France
-   \and \inst{\( \dagger \)} Some lab
-   \and \inst{\( \ddagger \)} Another one
+	\inst{ \( * \) } Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 38000 Grenoble, France
+	\and \inst{\( \dagger \)} Some lab
+	\and \inst{\( \ddagger \)} Another one
 }
 
 
@@ -51,18 +54,18 @@
 % Bib
 %----------------------------------------------------------------------------------------
 \usepackage[
-   citestyle=numeric-comp,
-   bibstyle=numeric,
-   sorting=none,
-   backend=biber,
-   hyperref=true,
-   backref=true,
-   citecounter=true,
-   citetracker=true,
-   ibidtracker=context,
-   doi=false,
-   url=false,
-   isbn=false,
+	citestyle=numeric-comp,
+	bibstyle=numeric,
+	sorting=none,
+	backend=biber,
+	hyperref=true,
+	backref=true,
+	citecounter=true,
+	citetracker=true,
+	ibidtracker=context,
+	doi=false,
+	url=false,
+	isbn=false,
 ]{biblatex}
 
 % Shortcuts to cite ConferenceProc, JournalArt

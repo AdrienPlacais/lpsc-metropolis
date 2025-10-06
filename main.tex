@@ -15,32 +15,34 @@
 \maketitle
 
 \begin{frame}[noframenumbering]{Outline}
-   \tableofcontents
+	\tableofcontents
 \end{frame}
 
 \section{Section}
 \begin{frame}{Frame}
-   \begin{itemize}
-      \item A
-            \begin{itemize}
-               \item B
-               \item C
-            \end{itemize}
-      \item[\( \Rightarrow \)] D
-   \end{itemize}
-   \begin{table}[hbtp]
-      \centering
-      \begin{tabular}{@{} l c @{}}
-         \toprule
-         Cavity parameters     & Last section      \\
-         \midrule
-         Cavity type           & 5-cell elliptical \\
-         \( f\,[\si{\MHz}]\)   & \num{648}         \\
-         \# cav per cryomodule & \num{5}           \\
-         \# of cryomodules     & 8                 \\
-         \bottomrule
-      \end{tabular}
-   \end{table}
+	\begin{itemize}
+		\item A
+		      \begin{itemize}
+			      \item B
+			      \item C
+		      \end{itemize}
+		\item[\( \Rightarrow \)] D
+		\item \SI{648}{\MHz} (SI env)
+		\item \( 648\,\mathrm{MHz} \) (math env)
+	\end{itemize}
+	\begin{table}[hbtp]
+		\centering
+		\begin{tabular}{@{} l c @{}}
+			\toprule
+			Cavity parameters     & Last section      \\
+			\midrule
+			Cavity type           & 5-cell elliptical \\
+			\( f\,[\si{\MHz}]\)   & \num{648}         \\
+			\# cav per cryomodule & \num{5}           \\
+			\# of cryomodules     & 8                 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
 
 
